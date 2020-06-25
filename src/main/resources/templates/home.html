@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Security Tutorial</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+     <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+ <form th:action="@{/logout}" method="get">
+ 		<div class="panel-heading">
+               <span th:utext="${userName}"></span>
+          
+        <button class="btn btn-md btn-danger btn-block" name="registration"
+                type="Submit" style="width:70px">Logout
+        </button>
+        </div>
+    </form>
+    
+     <form th:action="@{/updatepassword}" method="post">
+     	<div style="width:200px; border-style: solid;">
+     	<span>Update Password </span>
+		<input type="password" placeholder="Enter Old Password"
+                th:name="oldpassword" class="form-control"/> <br/>
+                
+        <input type="password" placeholder="Enter new Password"
+                th:name="newpassword" class="form-control"/> <br/>
+         
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Update" type="Submit"
+                th:text="Update"></button>
+                
+        </div>
+    </form>
+    
+
+    <h3>Welcome to Home Page</h3>
+    <table border="1" cellpadding ="10">
+  <thead>
+  <tr>
+  <th> Product Code</th>
+  <th> Product Name</th>
+  <th> Price</th>
+  <th> Buy</th>
+  </tr>
+  </thead>
+  
+  <tbody>
+   <tr th:each ="item : ${products}">
+   <td th:text ="${item.code}"></td>
+   <td th:text="${item.name}"></td>
+   <td th:text="${item.price}"></td>
+   <td>
+   	<a th:href="@{'/buyProduct/'+${item.code}}">Buy Now</a>
+   </td>
+   </tr>
+   
+   
+  
+  </tbody>
+  </table>
+</div>
+</body>
+</html>
